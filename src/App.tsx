@@ -14,6 +14,8 @@ import {
   Layers3,
   LockKeyhole,
   MessageSquareCode,
+  Minus,
+  Plus,
   Rocket,
   Scissors,
   ShieldCheck,
@@ -48,12 +50,31 @@ type DemoScenario = {
   details: Array<{ label: string; value: string }>;
 };
 
+type FaqItem = {
+  id: string;
+  question: string;
+  answer: string;
+};
+
+type BusinessType = {
+  title: string;
+  tag: string;
+  body: string;
+  image: string;
+  imageAlt: string;
+  detail: string;
+};
+
 const navItems = [
   { label: "Motor", href: "#motor" },
+  { label: "Tipos", href: "#tipos" },
   { label: "Funciones", href: "#funciones" },
   { label: "Flujo", href: "#flujo" },
+  { label: "FAQ", href: "#faq" },
   { label: "Mockups", href: "#visuales" },
 ];
+
+const brandLogoSrc = "/mockups/logo_light.png";
 
 const capabilities: Capability[] = [
   {
@@ -164,6 +185,78 @@ const workflow = [
   },
 ];
 
+const businessTypes: BusinessType[] = [
+  {
+    title: "Barberia",
+    tag: "Cortes, barba y fades",
+    body: "Agenda por silla, profesional y duracion real de cada servicio.",
+    image: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=900&q=82",
+    imageAlt: "Barbero perfilando el corte de un cliente.",
+    detail: "Reservas rapidas",
+  },
+  {
+    title: "Peluqueria",
+    tag: "Color, peinado y tratamientos",
+    body: "Organiza servicios largos, huecos entre citas y disponibilidad del equipo.",
+    image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=82",
+    imageAlt: "Interior de una peluqueria moderna con sillones y espejos.",
+    detail: "Agenda por profesional",
+  },
+  {
+    title: "Salon de unas",
+    tag: "Manicura y pedicura",
+    body: "Permite reservar por tecnica, duracion, precio y profesional asignado.",
+    image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=82",
+    imageAlt: "Manicura con unas esmaltadas en tonos oscuros.",
+    detail: "Servicios por duracion",
+  },
+  {
+    title: "Centro de estetica",
+    tag: "Faciales, masajes y cabina",
+    body: "Controla cabinas, tratamientos, clientes recurrentes y recordatorios.",
+    image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=82",
+    imageAlt: "Tratamiento facial en un centro de estetica.",
+    detail: "Cabinas bajo control",
+  },
+  {
+    title: "Cejas y pestanas",
+    tag: "Lifting, extensiones y diseno",
+    body: "Reserva servicios de precision con tiempos claros y seguimiento del cliente.",
+    image: "https://images.unsplash.com/photo-1589710751893-f9a6770ad71b?auto=format&fit=crop&w=900&q=82",
+    imageAlt: "Aplicacion de extensiones de pestanas.",
+    detail: "Citas de precision",
+  },
+  {
+    title: "Otros",
+    tag: "Bienestar y servicios locales",
+    body: "Adapta Gipsi a cualquier negocio que trabaje con citas, equipo y clientes.",
+    image: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=900&q=82",
+    imageAlt: "Herramientas de maquillaje y cuidado personal sobre una mesa.",
+    detail: "Flujo flexible",
+  },
+];
+
+const faqItems: FaqItem[] = [
+  {
+    id: "que-es",
+    question: "Que es Gipsi?",
+    answer:
+      "Gipsi es una app de reservas y gestion pensada para negocios de belleza, barberia, bienestar y servicios locales. Reune agenda, clientes, servicios, equipo y notificaciones en un mismo flujo.",
+  },
+  {
+    id: "ayuda-negocio",
+    question: "Como puede ayudar a mi negocio?",
+    answer:
+      "Ayuda a reducir llamadas y mensajes manuales, permite recibir reservas online 24/7, organiza la agenda diaria y da visibilidad al equipo sobre citas, huecos libres, clientes y estados de reserva.",
+  },
+  {
+    id: "baja",
+    question: "Puedo darme de baja en cualquier momento?",
+    answer:
+      "Si. La idea es que Gipsi sea flexible: puedes dejar de usar el servicio cuando lo necesites, sin atarte a procesos complicados ni afectar a la informacion esencial de tu negocio.",
+  },
+];
+
 const imageSlots = [
   {
     title: "Hero principal",
@@ -215,7 +308,10 @@ function App() {
               <span className="pulse-dot" />
               App de reservas para negocios modernos
             </div>
-            <h1>Gipsi</h1>
+            <div className="hero-title-lockup">
+              <img className="hero-title-logo" src={brandLogoSrc} alt="" aria-hidden="true" />
+              <h1>Gipsi</h1>
+            </div>
             <p className="hero-copy">
               Reservas online, agenda del equipo, clientes, servicios y notificaciones en una app pensada para que
               tu negocio llene huecos sin vivir pegado al telefono.
@@ -260,6 +356,8 @@ function App() {
             </div>
           </div>
         </section>
+
+        <BusinessTypesSection />
 
         <section className="section surface-band" id="funciones">
           <div className="section-inner feature-layout">
@@ -334,8 +432,8 @@ function App() {
         <section className="section" id="visuales">
           <div className="section-inner">
             <div className="section-heading">
-              <span className="section-kicker">Slots visuales</span>
-              <h2>Huecos listos para tus imagenes reales.</h2>
+              <span className="section-kicker">Simplicidad</span>
+              <h2>Interfaces claras y accesibles.</h2>
               <p>
                 La pagina reserva espacios para mockups, screenshots y composiciones de producto sin romper la
                 maquetacion.
@@ -349,6 +447,8 @@ function App() {
             </div>
           </div>
         </section>
+
+        <FaqSection />
 
         <section className="cta-section">
           <div className="section-inner cta-inner">
@@ -373,7 +473,7 @@ function Header() {
   return (
     <header className="site-header">
       <a className="brand" href="#top" aria-label="Gipsi">
-        <span className="brand-mark">g</span>
+        <img className="brand-logo" src={brandLogoSrc} alt="" aria-hidden="true" />
         <span>Gipsi</span>
       </a>
       <nav className="nav-links" aria-label="Navegacion principal">
@@ -467,6 +567,44 @@ function CapabilityCard({ capability }: { capability: Capability }) {
       <p>{capability.body}</p>
       <div className="card-line" />
     </article>
+  );
+}
+
+function BusinessTypesSection() {
+  return (
+    <section className="section business-types-section" id="tipos">
+      <div className="section-inner business-types-heading">
+        <div className="section-heading compact-heading">
+          <span className="section-kicker">Para cada negocio</span>
+          <h2>Gipsi para tu negocio.</h2>
+          <p>
+            Gipsi se adapta a servicios con cita previa, equipos con horarios y clientes que quieren reservar sin
+            esperar respuesta.
+          </p>
+        </div>
+
+        <div className="business-types-note">
+          <Building2 size={24} />
+          <span>Elige tu tipo de negocio y deja espacio para crecer con nuevos servicios.</span>
+        </div>
+      </div>
+
+      <div className="section-inner business-types-grid" aria-label="Tipos de negocio compatibles con Gipsi">
+        {businessTypes.map((type) => (
+          <article className="business-type-card" key={type.title}>
+            <div className="business-type-media">
+              <img src={type.image} alt={type.imageAlt} loading="lazy" />
+              <span>{type.detail}</span>
+            </div>
+            <div className="business-type-content">
+              <span>{type.tag}</span>
+              <h3>{type.title}</h3>
+              <p>{type.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -598,6 +736,53 @@ function SecurityItem({
   );
 }
 
+function FaqSection() {
+  const [openFaqId, setOpenFaqId] = useState<string | null>(faqItems[0].id);
+
+  return (
+    <section className="section faq-section" id="faq">
+      <div className="section-inner faq-layout">
+        <div className="section-heading compact-heading">
+          <span className="section-kicker">Preguntas frecuentes</span>
+          <h2>Dudas rapidas antes de empezar.</h2>
+          <p>
+            Respuestas claras para entender que hace Gipsi, como encaja en tu operativa y que libertad tienes al usarlo.
+          </p>
+        </div>
+
+        <div className="faq-list">
+          {faqItems.map((item) => {
+            const isOpen = item.id === openFaqId;
+            const answerId = `faq-answer-${item.id}`;
+
+            return (
+              <article className={`faq-item ${isOpen ? "is-open" : ""}`} key={item.id}>
+                <button
+                  className="faq-question"
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={answerId}
+                  onClick={() => setOpenFaqId(isOpen ? null : item.id)}
+                >
+                  <span>{item.question}</span>
+                  <span className="faq-icon" aria-hidden="true">
+                    {isOpen ? <Minus size={18} /> : <Plus size={18} />}
+                  </span>
+                </button>
+                {isOpen ? (
+                  <div className="faq-answer" id={answerId}>
+                    <p>{item.answer}</p>
+                  </div>
+                ) : null}
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ImageSlot({
   title,
   file,
@@ -626,7 +811,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="section-inner footer-inner">
         <a className="brand" href="#top" aria-label="Gipsi">
-          <span className="brand-mark">g</span>
+          <img className="brand-logo" src={brandLogoSrc} alt="" aria-hidden="true" />
           <span>Gipsi</span>
         </a>
         <div className="footer-links">
