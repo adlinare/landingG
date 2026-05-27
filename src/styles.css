@@ -184,7 +184,7 @@ button {
 
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 4;
   max-width: none;
 }
 
@@ -347,38 +347,97 @@ p {
 
 .hero-image-slot {
   position: absolute;
-  z-index: 2;
-  right: max(36px, calc((100vw - 1160px) / 2));
-  bottom: 72px;
-  width: min(520px, 42vw);
-  transform: rotate(-2deg);
-}
-
-.hero-agenda-card {
-  position: absolute;
   z-index: 3;
-  right: max(98px, calc((100vw - 1160px) / 2 + 98px));
-  top: 166px;
-  width: 390px;
-  border: 1px solid rgba(192, 238, 211, 0.26);
-  border-radius: 26px;
-  background: rgba(22, 33, 38, 0.84);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  backdrop-filter: blur(20px);
-  animation: float-panel 7s ease-in-out infinite;
+  right: max(22px, calc((100vw - 1160px) / 2 - 8px));
+  bottom: 54px;
+  width: min(620px, 48vw);
+  height: 530px;
+  pointer-events: auto;
 }
 
-.agenda-card-header {
-  display: flex;
+.hero-mockups {
+  position: relative;
+  height: 100%;
+}
+
+.hero-phone {
+  position: absolute;
+  aspect-ratio: 370 / 820;
+  margin: 0;
+}
+
+.hero-phone img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(245, 247, 246, 0.18);
+  border-radius: 38px;
+  background: var(--surface-deep);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+  object-fit: cover;
+  transition: transform 220ms ease, filter 220ms ease, box-shadow 220ms ease;
+  will-change: transform;
+}
+
+.hero-phone:hover img {
+  box-shadow: 0 34px 92px rgba(0, 0, 0, 0.5);
+  transform: scale(1.045);
+}
+
+.hero-phone figcaption {
+  position: absolute;
+  right: 18px;
+  bottom: -14px;
+  left: 18px;
+  display: inline-flex;
+  min-height: 34px;
   align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 18px;
-  border-bottom: 1px solid rgba(245, 247, 246, 0.08);
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid rgba(245, 247, 246, 0.13);
+  border-radius: 999px;
+  background: rgba(22, 33, 38, 0.82);
+  color: var(--text-high);
+  font-size: 12px;
+  font-weight: 900;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.26);
+  backdrop-filter: blur(14px);
 }
 
-.agenda-card-header span,
+.hero-phone figcaption svg {
+  color: var(--mint);
+}
+
+.hero-phone-1 {
+  z-index: 3;
+  bottom: 0;
+  left: 50%;
+  width: min(242px, 40%);
+  transform: translateX(-50%);
+}
+
+.hero-phone-2 {
+  z-index: 2;
+  bottom: 30px;
+  left: 4px;
+  width: min(198px, 32%);
+  transform: rotate(-7deg);
+}
+
+.hero-phone-3 {
+  z-index: 1;
+  right: 4px;
+  bottom: 54px;
+  width: min(198px, 32%);
+  transform: rotate(7deg);
+}
+
+.hero-phone-2 img,
+.hero-phone-3 img {
+  opacity: 0.9;
+  filter: saturate(0.94) brightness(0.84);
+}
+
 .phone-header span,
 .preview-header span {
   display: block;
@@ -388,138 +447,12 @@ p {
   font-weight: 800;
 }
 
-.agenda-card-header strong,
 .phone-header strong,
 .preview-header strong {
   color: var(--text-high);
   font-family: var(--font-display);
   font-size: 21px;
   font-weight: 800;
-}
-
-.live-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  min-height: 34px;
-  padding: 0 12px;
-  border-radius: 999px;
-  background: var(--mint);
-  color: var(--base);
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.agenda-card-list {
-  display: grid;
-  gap: 8px;
-  padding: 16px 18px 18px;
-}
-
-.appointment-row {
-  display: grid;
-  grid-template-columns: 72px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 10px;
-  min-height: 58px;
-  padding: 10px;
-  border: 1px solid rgba(245, 247, 246, 0.08);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.055);
-}
-
-.appointment-row.is-muted {
-  opacity: 0.7;
-}
-
-.appointment-time {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: var(--mint);
-  font-size: 13px;
-  font-weight: 900;
-}
-
-.appointment-row strong {
-  display: block;
-  color: var(--text-high);
-  font-size: 14px;
-  font-weight: 900;
-}
-
-.appointment-row span {
-  color: var(--text-mid);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.appointment-row em {
-  padding: 6px 9px;
-  border-radius: 999px;
-  background: rgba(192, 238, 211, 0.12);
-  color: var(--mint);
-  font-size: 11px;
-  font-style: normal;
-  font-weight: 900;
-}
-
-.agenda-card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 0 18px 18px;
-}
-
-.agenda-card-footer strong {
-  display: block;
-  color: var(--mint);
-  font-family: var(--font-display);
-  font-size: 34px;
-  line-height: 0.9;
-}
-
-.agenda-card-footer span {
-  color: var(--text-mid);
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.mini-action {
-  display: inline-flex;
-  min-height: 38px;
-  align-items: center;
-  padding: 0 13px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text-high) !important;
-}
-
-.hero-signal {
-  position: absolute;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 42px;
-  padding: 0 14px;
-  border: 1px solid rgba(245, 247, 246, 0.12);
-  border-radius: 999px;
-  background: rgba(45, 61, 68, 0.88);
-  color: var(--text-high);
-  font-size: 13px;
-  font-weight: 800;
-  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.22);
-}
-
-.signal-one {
-  right: max(380px, calc((100vw - 1160px) / 2 + 390px));
-  top: 512px;
-}
-
-.signal-two {
-  right: max(40px, calc((100vw - 1160px) / 2 + 16px));
-  top: 404px;
 }
 
 .section {
@@ -1166,79 +1099,135 @@ p {
   font-size: 20px;
 }
 
-.visual-grid {
+.app-carousel {
   display: grid;
-  grid-template-columns: 1.1fr 0.95fr 0.95fr;
   gap: 16px;
 }
 
-.image-slot {
-  min-height: 390px;
-  padding: 14px;
-  border: 1px dashed rgba(192, 238, 211, 0.35);
-  border-radius: 32px;
-  background: rgba(255, 255, 255, 0.045);
+.carousel-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
-.image-slot.compact {
-  min-height: 360px;
-  background: rgba(255, 255, 255, 0.075);
-}
-
-.image-slot p {
-  margin: 16px 8px 4px;
-  font-size: 14px;
-}
-
-.visual-grid .image-slot:first-child {
-  grid-row: span 2;
-  min-height: 560px;
-}
-
-.slot-frame {
+.carousel-button {
   display: grid;
-  min-height: 100%;
+  width: 42px;
+  height: 42px;
   place-items: center;
-  align-content: center;
-  gap: 12px;
-  border-radius: 24px;
-  background:
-    linear-gradient(rgba(192, 238, 211, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(192, 238, 211, 0.07) 1px, transparent 1px),
-    rgba(22, 33, 38, 0.74);
-  background-size: 28px 28px;
+  border: 1px solid rgba(245, 247, 246, 0.1);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
   color: var(--text-high);
-  text-align: center;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
-.image-slot:not(.compact) .slot-frame {
-  min-height: 310px;
+.carousel-button:hover,
+.carousel-button[aria-pressed="true"] {
+  background: var(--mint);
+  color: var(--base);
+  transform: translateY(-2px);
 }
 
-.visual-grid .image-slot:first-child .slot-frame {
-  min-height: 478px;
+.app-screen-carousel {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding: 4px 0 18px;
+  cursor: grab;
+  scrollbar-width: none;
+  touch-action: pan-y;
+  user-select: none;
 }
 
-.slot-frame svg {
-  color: var(--mint);
+.app-screen-carousel::-webkit-scrollbar {
+  display: none;
 }
 
-.slot-frame span {
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 800;
+.app-screen-carousel.is-dragging {
+  cursor: grabbing;
 }
 
-.slot-frame small {
-  max-width: calc(100% - 28px);
-  padding: 8px 10px;
+.app-screen-card {
+  display: grid;
+  flex: 0 0 clamp(318px, 31vw, 360px);
+  grid-template-rows: auto 1fr;
+  gap: 18px;
+  min-height: 700px;
+  padding: 18px;
+  border: 1px solid rgba(245, 247, 246, 0.09);
+  border-radius: 30px;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.03)),
+    rgba(36, 50, 56, 0.78);
+  box-shadow: 0 22px 62px rgba(0, 0, 0, 0.16);
+  transition: border-color 180ms ease, transform 220ms ease, box-shadow 220ms ease;
+}
+
+.app-screen-card:hover {
+  border-color: rgba(192, 238, 211, 0.28);
+  box-shadow: 0 30px 76px rgba(0, 0, 0, 0.24);
+  transform: translateY(-4px);
+}
+
+.app-screen-phone {
+  width: min(100%, 254px);
+  aspect-ratio: 370 / 820;
+  margin: 0 auto;
+  border: 1px solid rgba(245, 247, 246, 0.14);
+  border-radius: 34px;
+  background: var(--surface-deep);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.34);
+  overflow: hidden;
+  transition: transform 220ms ease;
+}
+
+.app-screen-phone img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 240ms ease;
+  will-change: transform;
+}
+
+.app-screen-card:hover .app-screen-phone {
+  transform: scale(1.025);
+}
+
+.app-screen-card:hover .app-screen-phone img {
+  transform: scale(1.045);
+}
+
+.app-screen-copy {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+
+.screen-label {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 32px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 11px;
   border-radius: 999px;
-  background: rgba(192, 238, 211, 0.12);
+  background: rgba(192, 238, 211, 0.13);
   color: var(--mint);
   font-size: 12px;
-  white-space: normal;
-  word-break: break-word;
-  font-weight: 800;
+  font-weight: 900;
+}
+
+.app-screen-copy h3 {
+  margin: 4px 0 0;
+  font-size: 25px;
+}
+
+.app-screen-copy p {
+  margin: 0;
+  font-size: 14px;
 }
 
 .faq-section {
@@ -1407,24 +1396,28 @@ p {
   }
 
   .hero {
-    min-height: 920px;
+    min-height: 1040px;
   }
 
   .hero-image-slot {
     right: 28px;
-    bottom: 70px;
-    width: min(500px, 68vw);
+    bottom: 76px;
+    width: min(440px, 45vw);
+    height: 430px;
   }
 
-  .hero-agenda-card {
-    right: 36px;
-    top: 510px;
-    width: min(420px, calc(100vw - 72px));
+  .hero-phone figcaption {
+    right: 12px;
+    left: 12px;
   }
 
-  .signal-one,
-  .signal-two {
-    display: none;
+  .hero-phone-1 {
+    width: min(210px, 43%);
+  }
+
+  .hero-phone-2,
+  .hero-phone-3 {
+    width: min(168px, 35%);
   }
 
   .capability-grid,
@@ -1455,12 +1448,18 @@ p {
     margin-bottom: 8px;
   }
 
-  .visual-grid {
-    grid-template-columns: 1fr 1fr;
+  .app-screen-carousel {
+    gap: 14px;
   }
 
-  .visual-grid .image-slot:first-child {
-    grid-column: 1 / -1;
+  .app-screen-card {
+    flex-basis: clamp(292px, 34vw, 330px);
+    min-height: 620px;
+    padding: 14px;
+  }
+
+  .app-screen-phone {
+    width: min(100%, 220px);
   }
 }
 
@@ -1564,25 +1563,13 @@ p {
     font-size: 11px;
   }
 
-  .hero-agenda-card {
-    display: none;
-  }
-
   .hero-image-slot {
     position: relative;
     right: auto;
     bottom: auto;
     width: min(calc(100vw - 28px), 480px);
-    margin: 28px auto 0;
-    transform: none;
-  }
-
-  .hero-image-slot .image-slot.compact {
-    min-height: 230px;
-  }
-
-  .hero-image-slot .slot-frame {
-    min-height: 202px;
+    height: 418px;
+    margin: 34px auto 0;
   }
 
   .section {
@@ -1605,9 +1592,35 @@ p {
   .workflow,
   .business-types-grid,
   .feature-rail,
-  .security-grid,
-  .visual-grid {
+  .security-grid {
     grid-template-columns: 1fr;
+  }
+
+  .hero-phone-1 {
+    width: min(218px, 58vw);
+  }
+
+  .hero-phone-2,
+  .hero-phone-3 {
+    bottom: 48px;
+    width: min(150px, 40vw);
+  }
+
+  .hero-phone-2 {
+    left: 0;
+  }
+
+  .hero-phone-3 {
+    right: 0;
+  }
+
+  .app-screen-card {
+    flex-basis: min(322px, calc(100vw - 48px));
+    min-height: 0;
+  }
+
+  .app-screen-phone {
+    width: min(100%, 260px);
   }
 
   .capability-card {
@@ -1673,14 +1686,6 @@ p {
     min-height: 330px;
   }
 
-  .visual-grid .image-slot:first-child {
-    min-height: 390px;
-  }
-
-  .visual-grid .image-slot:first-child .slot-frame {
-    min-height: 310px;
-  }
-
   .cta-inner,
   .footer-inner {
     align-items: flex-start;
@@ -1713,8 +1718,23 @@ p {
 
   .hero-image-slot {
     width: min(362px, calc(100% - 28px));
+    height: 384px;
     margin-right: 14px;
     margin-left: 14px;
+  }
+
+  .hero-phone figcaption {
+    min-height: 30px;
+    font-size: 11px;
+  }
+
+  .hero-phone-1 {
+    width: min(198px, 58vw);
+  }
+
+  .hero-phone-2,
+  .hero-phone-3 {
+    width: min(132px, 39vw);
   }
 }
 
